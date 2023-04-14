@@ -1,7 +1,10 @@
+import ChatBox from "./components/ChatBox/ChatBox";
+import Layout from "./components/Layout/Layout";
+
 export default function App() {
   return (
-    <div className="text-base">
-      <div>Welcome to the app!</div>
-    </div>
+    <Layout>
+      <ChatBox />
+    </Layout>
   );
 }
