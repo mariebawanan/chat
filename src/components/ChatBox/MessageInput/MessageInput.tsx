@@ -1,6 +1,7 @@
 import Input from "@/components/Input/Input";
 import { ChannelContext, MessageContext, UserContext } from "@/context";
 import { POST_MESSAGE } from "@/graphql";
+import { Message } from "@/types";
 import { useMutation } from "@apollo/client";
 import { useContext, useState } from "react";
 
@@ -15,6 +16,16 @@ export default function MessageInput() {
       console.log(data);
       const { postMessage } = data;
       setMessages([postMessage, ...messages]);
+    },
+    onError: (_) => {
+      const unsentMessage: Message = {
+        messageId: `unsent-${new Date().toISOString()}-${userId}`,
+        text,
+        userId,
+        datetime: new Date(),
+        failed: true,
+      };
+      setMessages([unsentMessage, ...messages]);
     },
   });
 

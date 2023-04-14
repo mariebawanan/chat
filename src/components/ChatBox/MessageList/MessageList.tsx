@@ -31,13 +31,14 @@ export default function MessageList() {
   console.log(messages);
 
   return (
-    <div className="p-4 flex-1 bg-red-200 ">
+    <div className="p-4 flex-1">
       <MessagesContainer>
         {messages.map((message: Message) => (
           <div
             key={message.messageId}
             className={classNames("w-full flex flex-col items-start space-x-2", {
               "items-end": message.userId === userId,
+              " border-2 border-red-900": message.failed,
             })}
           >
             <div>{format(new Date(message.datetime), "MMM dd yyyy hh:mm a")}</div>

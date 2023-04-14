@@ -6,7 +6,7 @@ export default function ChatBox() {
     <div className="flex flex-1 bg-slate-100 justify-center my-20 p-4">
       <div className="w-3/4 h-full flex">
         <Sidebar />
-        <div className="flex flex-col">
+        <div className="flex flex-col flex-1">
           <MessageList />
           <MessageInput />
         </div>
