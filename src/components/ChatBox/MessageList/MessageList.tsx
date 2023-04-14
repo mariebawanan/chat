@@ -35,6 +35,7 @@ export default function MessageList() {
       <MessagesContainer>
         {messages.map((message: Message) => (
           <div
+            key={message.messageId}
             className={classNames("w-full flex flex-col items-start space-x-2", {
               "items-end": message.userId === userId,
             })}
