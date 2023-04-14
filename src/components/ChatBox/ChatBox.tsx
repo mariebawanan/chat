@@ -1,11 +1,11 @@
-import Channels from "./Channels";
 import Messages from "./Messages";
+import Sidebar from "./SideBar";
 
 export default function ChatBox() {
   return (
-    <div className="flex flex-1 bg-slate-100 justify-center">
-      <div className="w-3/4 bg-red-100 my-20 flex">
-        <Channels />
+    <div className="flex flex-1 bg-slate-100 justify-center my-20 p-4">
+      <div className="w-3/4 h-full flex">
+        <Sidebar />
         <Messages />
       </div>
     </div>
