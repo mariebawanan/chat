@@ -1,6 +1,5 @@
 import { ChannelContext, MessageContext } from "@/context";
 import { FETCH_MORE_MESSAGES } from "@/graphql";
-import { sortMessages } from "@/utils";
 import { useLazyQuery } from "@apollo/client";
 import { useContext, useState } from "react";
 
@@ -17,12 +16,19 @@ export default function MessagesContainer({ children }: Props) {
     fetchPolicy: "network-only",
     onCompleted: (data) => {
       const { fetchMoreMessages } = data;
-      setMessages(sortMessages([...messages, ...fetchMoreMessages]));
+
+      if (isOld) {
+        setMessages([...messages, ...fetchMoreMessages]);
+      } else {
+        const sorted = [...fetchMoreMessages].reverse();
+        setMessages([...sorted, ...messages]);
+      }
     },
   });
 
   const handleFetch = (old: boolean) => {
     setIsOld(old);
+
     const messageId = old
       ? messages[messages.length - 1].messageId
       : messages[0].messageId;
