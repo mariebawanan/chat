@@ -1,6 +1,7 @@
+import { ChannelContext } from "@/context/channelContext";
 import { Channel, Option } from "@/types";
 import classNames from "classnames";
-import { useState } from "react";
+import { useContext } from "react";
 
 const channelList: Option[] = [
   {
@@ -18,7 +19,7 @@ const channelList: Option[] = [
 ];
 
 export default function ChannelList() {
-  const [channelId, setChannelId] = useState(channelList[0].value);
+  const { channelId, setChannelId } = useContext(ChannelContext);
 
   const handleChannelChange = (value: string) => {
     setChannelId(value);

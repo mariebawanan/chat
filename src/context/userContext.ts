@@ -3,8 +3,8 @@ import { UserContextType } from "../types/context";
 import { User } from "../types/user";
 
 const initialState: UserContextType = {
-  user: User.Joyse,
-  setUser: () => {},
+  userId: User.Joyse,
+  setUserId: () => {},
 };
 
 export const UserContext = createContext(initialState);

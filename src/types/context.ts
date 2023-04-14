@@ -1,9 +1,9 @@
 export interface UserContextType {
-  user: string;
-  setUser: (user: string) => void;
+  userId: string;
+  setUserId: (user: string) => void;
 }
 
 export interface ChannelContextType {
-  channel: string;
-  setChannel: (channel: string) => void;
+  channelId: string;
+  setChannelId: (channel: string) => void;
 }

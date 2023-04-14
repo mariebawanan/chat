@@ -1,6 +1,7 @@
 import { Dropdown } from "@/components";
+import { UserContext } from "@/context/userContext";
 import { Option, User } from "@/types";
-import { useState } from "react";
+import { useContext } from "react";
 
 const userList: Option[] = [
   {
@@ -18,7 +19,7 @@ const userList: Option[] = [
 ];
 
 export default function UserSwitcher() {
-  const [userId, setUserId] = useState(userList[0].value);
+  const { userId, setUserId } = useContext(UserContext);
 
   const handleUserChange = (value: string) => {
     setUserId(value);
