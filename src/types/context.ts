@@ -1,3 +1,5 @@
+import { Message } from "./message";
+
 export interface UserContextType {
   userId: string;
   setUserId: (user: string) => void;
@@ -6,4 +8,9 @@ export interface UserContextType {
 export interface ChannelContextType {
   channelId: string;
   setChannelId: (channel: string) => void;
+}
+
+export interface MessageContextType {
+  messages: Message[];
+  setMessages: (messages: Message[]) => void;
 }

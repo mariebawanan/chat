@@ -1,6 +1,6 @@
 import { ChatBox, Layout } from "@/components";
-import { ChannelContext, UserContext } from "@/context";
-import { Channel, User } from "@/types";
+import { ChannelContext, MessageContext, UserContext } from "@/context";
+import { Channel, Message, User } from "@/types";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { useState } from "react";
 
@@ -12,14 +12,17 @@ const client = new ApolloClient({
 export default function App() {
   const [userId, setUserId] = useState<string>(User.Joyse);
   const [channelId, setChannelId] = useState<string>(Channel.General);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   return (
     <ApolloProvider client={client}>
       <ChannelContext.Provider value={{ channelId, setChannelId }}>
         <UserContext.Provider value={{ userId, setUserId }}>
-          <Layout>
-            <ChatBox />
-          </Layout>
+          <MessageContext.Provider value={{ messages, setMessages }}>
+            <Layout>
+              <ChatBox />
+            </Layout>
+          </MessageContext.Provider>
         </UserContext.Provider>
       </ChannelContext.Provider>
     </ApolloProvider>

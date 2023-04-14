@@ -1,5 +1,4 @@
-import MessageList from "./MessageList";
-import Sidebar from "./Sidebar/Sidebar";
+import { MessageList, Sidebar } from "@/components";
 
 export default function ChatBox() {
   return (
