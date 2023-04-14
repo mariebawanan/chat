@@ -1,4 +1,4 @@
-import { Option } from "../../types/option";
+import { Option } from "@/types";
 
 interface Props {
   value: string;
@@ -16,8 +16,10 @@ export default function Dropdown({ label, options, value, onChange }: Props) {
     <div className="flex flex-col space-y-2">
       {label && <label>{label}</label>}
       <select value={value} onChange={handleChange}>
-        {options.map((option) => (
-          <option value={option.value}>{option.label}</option>
+        {options.map(({ value, label }) => (
+          <option key={value} value={value}>
+            {label}
+          </option>
         ))}
       </select>
     </div>

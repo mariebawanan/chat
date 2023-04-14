@@ -1,7 +1,6 @@
+import { Dropdown } from "@/components";
+import { Option, User } from "@/types";
 import { useState } from "react";
-import { Option } from "../../../types/option";
-import { User } from "../../../types/user";
-import Dropdown from "../../Dropdown/Dropdown";
 
 const userList: Option[] = [
   {

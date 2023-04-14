@@ -1,5 +1,4 @@
-import ChatBox from "./components/ChatBox/ChatBox";
-import Layout from "./components/Layout/Layout";
+import { ChatBox, Layout } from "@/components";
 
 export default function App() {
   return (

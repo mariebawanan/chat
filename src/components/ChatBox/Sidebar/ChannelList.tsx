@@ -1,20 +1,19 @@
+import { Channel, Option } from "@/types";
 import classNames from "classnames";
 import { useState } from "react";
-import { ChannelIds, ChannelName } from "../../../types/channel";
-import { Option } from "../../../types/option";
 
 const channelList: Option[] = [
   {
-    label: ChannelName.General,
-    value: ChannelIds[ChannelName.General],
+    label: Channel.General,
+    value: Channel.General,
   },
   {
-    label: ChannelName.Technology,
-    value: ChannelIds[ChannelName.Technology],
+    label: Channel.Technology,
+    value: Channel.Technology,
   },
   {
-    label: ChannelName.LGTM,
-    value: ChannelIds[ChannelName.LGTM],
+    label: Channel.LGTM,
+    value: Channel.LGTM,
   },
 ];
 
@@ -28,12 +27,13 @@ export default function ChannelList() {
   return (
     <div className="flex flex-col space-y-2">
       <label>Choose your channel</label>
-      {channelList.map((channel) => (
+      {channelList.map(({ value, label }) => (
         <div
-          className={classNames({ "bg-white": channelId === channel.value })}
-          onClick={() => handleChannelChange(channel.value)}
+          key={value}
+          className={classNames({ "bg-white": channelId === value })}
+          onClick={() => handleChannelChange(value)}
         >
-          {channel.label}
+          {label}
         </div>
       ))}
     </div>
