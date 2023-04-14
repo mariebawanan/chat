@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { useState } from "react";
-import { ChannelIds, ChannelName } from "../../types/channel";
-import { Option } from "../../types/option";
+import { ChannelIds, ChannelName } from "../../../types/channel";
+import { Option } from "../../../types/option";
 
 const channelList: Option[] = [
   {

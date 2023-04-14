@@ -1,5 +1,5 @@
 import Messages from "./Messages";
-import Sidebar from "./SideBar";
+import Sidebar from "./Sidebar/Sidebar";
 
 export default function ChatBox() {
   return (
