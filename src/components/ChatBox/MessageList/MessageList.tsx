@@ -18,7 +18,9 @@ export default function MessageList() {
   });
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="w-full h-full flex  items-center justify-center">Loading...</div>
+    );
   }
 
   if (error) {
@@ -26,12 +28,10 @@ export default function MessageList() {
   }
 
   return (
-    <div className="p-4 flex-1 mt-2 h-full pb-24">
-      <MessagesContainer>
-        {messages.map((message) => (
-          <MessageBubble key={message.messageId} message={message} />
-        ))}
-      </MessagesContainer>
-    </div>
+    <MessagesContainer>
+      {messages.map((message) => (
+        <MessageBubble key={message.messageId} message={message} />
+      ))}
+    </MessagesContainer>
   );
 }

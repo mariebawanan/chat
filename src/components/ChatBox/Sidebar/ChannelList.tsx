@@ -26,17 +26,25 @@ export default function ChannelList() {
   };
 
   return (
-    <div className="flex flex-col space-y-2">
-      <label>Choose your channel</label>
-      {channelList.map(({ value, label }) => (
-        <div
-          key={value}
-          className={classNames({ "bg-white": channelId === value })}
-          onClick={() => handleChannelChange(value)}
-        >
-          {label}
-        </div>
-      ))}
+    <div className="flex flex-col space-y-4">
+      <label className="text-xl font-serif">Channels</label>
+
+      <div className="flex flex-col space-y-4">
+        {channelList.map(({ value, label }) => (
+          <div
+            key={value}
+            className={classNames(
+              "p-4 rounded-md bg-white hover:cursor-pointer hover:drop-shadow-lg transition-all",
+              {
+                "bg-gradient-to-r from-blue-100  to-blue-50": channelId === value,
+              }
+            )}
+            onClick={() => handleChannelChange(value)}
+          >
+            {label}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
