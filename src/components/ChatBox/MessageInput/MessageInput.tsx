@@ -9,14 +9,17 @@ export default function MessageInput() {
   const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (ref.current) {
-      const messaege = localStorage.getItem(`${channelId}-${userId}`);
-      ref.current.value = messaege || "";
+    const currentInput = ref.current;
+    if (!currentInput) {
+      return;
     }
 
+    const draft = localStorage.getItem(`${channelId}-${userId}`);
+    currentInput.value = draft || "";
+
     return () => {
-      if (ref.current && ref.current.value) {
-        localStorage.setItem(`${channelId}-${userId}`, ref.current.value);
+      if (currentInput && currentInput.value) {
+        localStorage.setItem(`${channelId}-${userId}`, currentInput.value);
       }
     };
   }, [channelId, userId]);

@@ -28,8 +28,6 @@ export default function MessageList() {
     return <div>Error: {error.message}</div>;
   }
 
-  console.log(messages);
-
   return (
     <div className="p-4 flex-1">
       <MessagesContainer>

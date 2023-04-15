@@ -12,7 +12,7 @@ export default function MessagesContainer({ children }: Props) {
   const { messages, setMessages } = useContext(MessageContext);
   const { channelId } = useContext(ChannelContext);
 
-  const [fetchMoreMessages, { loading, error }] = useLazyQuery(FETCH_MORE_MESSAGES, {
+  const [fetchMoreMessages, { loading }] = useLazyQuery(FETCH_MORE_MESSAGES, {
     fetchPolicy: "network-only",
     onCompleted: (data) => {
       const { fetchMoreMessages } = data;
