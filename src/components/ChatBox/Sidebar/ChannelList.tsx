@@ -1,3 +1,4 @@
+import { SectionLayout } from "@/components/Layout";
 import { ChannelContext } from "@/context/channelContext";
 import { Channel, Option } from "@/types";
 import classNames from "classnames";
@@ -26,9 +27,7 @@ export default function ChannelList() {
   };
 
   return (
-    <div className="flex flex-col space-y-4">
-      <label className="text-xl font-serif">Channels</label>
-
+    <SectionLayout title="Channels">
       <div className="flex flex-col space-y-4">
         {channelList.map(({ value, label }) => (
           <div
@@ -45,6 +44,6 @@ export default function ChannelList() {
           </div>
         ))}
       </div>
-    </div>
+    </SectionLayout>
   );
 }

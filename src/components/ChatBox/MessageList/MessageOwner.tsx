@@ -1,3 +1,4 @@
+import { UserAvatars } from "@/types";
 import classNames from "classnames";
 
 interface Props {
@@ -8,10 +9,15 @@ interface Props {
 export default function MessageOwner({ userId, isSelf }: Props) {
   return (
     <p
-      className={classNames("font-semibold", {
+      className={classNames("text-xs font-thin", {
         "text-right": isSelf,
       })}
     >
+      <img
+        src={UserAvatars[`${userId}`]}
+        alt="user avatar"
+        className=" w-8 h-auto rounded-full"
+      />
       {userId}
     </p>
   );

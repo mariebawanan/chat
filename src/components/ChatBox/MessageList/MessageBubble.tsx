@@ -9,13 +9,10 @@ interface Props {
 export default function MessageBubble({ isSelf, failed, text }: Props) {
   return (
     <div
-      className={classNames(
-        "p-2 border  rounded-md shadow-bubble relative min-h-[38px]",
-        {
-          "border-red-900 bg-red-100": failed,
-          "border-slate-300": !failed,
-        }
-      )}
+      className={classNames("p-2 border  rounded-md shadow relative min-h-[38px]", {
+        "border-red-900 bg-red-100": failed,
+        "border-slate-300": !failed,
+      })}
     >
       <div
         className={classNames("absolute  border-t border-r w-3 h-3 rounded-sm top-3", {

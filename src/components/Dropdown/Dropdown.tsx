@@ -15,7 +15,11 @@ export default function Dropdown({ label, options, value, onChange }: Props) {
   return (
     <div className="flex flex-col space-y-4">
       {label && <label className="text-xl font-serif">{label}</label>}
-      <select value={value} onChange={handleChange} className="px-4 py-2 rounded-lg">
+      <select
+        value={value}
+        onChange={handleChange}
+        className="px-4 py-2 rounded-lg border border-slate-500"
+      >
         {options.map(({ value, label }) => (
           <option key={value} value={value}>
             {label}

@@ -1,4 +1,4 @@
-import { Dropdown } from "@/components";
+import { Dropdown, SectionLayout } from "@/components";
 import { UserContext } from "@/context/userContext";
 import { Option, User } from "@/types";
 import { useContext } from "react";
@@ -26,11 +26,8 @@ export default function UserSwitcher() {
   };
 
   return (
-    <Dropdown
-      label="Choose your user"
-      options={userList}
-      value={userId}
-      onChange={handleUserChange}
-    />
+    <SectionLayout title="Your User">
+      <Dropdown options={userList} value={userId} onChange={handleUserChange} />
+    </SectionLayout>
   );
 }
