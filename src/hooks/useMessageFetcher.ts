@@ -9,8 +9,8 @@ export default function useMessageFetcher(): {
   fetchMessages: (old: boolean) => void;
 } {
   const { channelId } = useContext(ChannelContext);
-  const { messages, setMessages } = useContext(MessageContext);
-  const [isOld, setIsOld] = useState(false);
+  const { messages, setMessages, setIsOld } = useContext(MessageContext);
+  const [isOld, setIsOldInternal] = useState(false);
 
   const [fetchMoreMessages, { loading }] = useLazyQuery(FETCH_MORE_MESSAGES, {
     fetchPolicy: "network-only",
@@ -27,6 +27,7 @@ export default function useMessageFetcher(): {
   });
 
   const fetchMessages = (old: boolean) => {
+    setIsOldInternal(old);
     setIsOld(old);
 
     const messageId = old

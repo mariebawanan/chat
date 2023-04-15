@@ -1,6 +1,6 @@
-import { ChannelContext } from "@/context";
+import { ChannelContext, MessageContext } from "@/context";
 import useMessageFetcher from "@/hooks/useMessageFetcher";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import ReadMore from "./ReadMore";
 
 interface Props {
@@ -8,11 +8,26 @@ interface Props {
 }
 
 export default function MessagesContainer({ children }: Props) {
-  const { loading, isOld, fetchMessages } = useMessageFetcher();
+  const { loading, fetchMessages } = useMessageFetcher();
+
+  const { messages, isOld } = useContext(MessageContext);
   const { channelId } = useContext(ChannelContext);
+  const listRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!listRef || !listRef.current) return;
+
+    listRef.current.scrollTo({
+      top: isOld ? 0 : listRef.current.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [listRef, messages, isOld]);
 
   return (
-    <div className="h-full overflow-y-auto scrollbar-thumb scrollbar-thumb-transparent group-hover/chatbox:scrollbar-thumb-gray-200 scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-transparent">
+    <div
+      ref={listRef}
+      className="h-full overflow-y-auto scrollbar-thumb scrollbar-thumb-transparent group-hover/chatbox:scrollbar-thumb-gray-200 scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-transparent"
+    >
       <div className="h-12 absolute top-0 flex items-center px-4 text-2xl font-serif bg-slate-100 w-full">
         {channelId}
       </div>

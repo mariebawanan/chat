@@ -1,8 +1,9 @@
+import Spinner from "@/components/Spinner/Spinner";
 import { ChannelContext, MessageContext } from "@/context";
 import { FETCH_LATEST_MESSAGES } from "@/graphql";
 import { useQuery } from "@apollo/client";
 import { useContext } from "react";
-import MessageBubble from "./MessageBubble";
+import Message from "./Message";
 import MessagesContainer from "./MessagesContainer";
 
 export default function MessageList() {
@@ -18,9 +19,7 @@ export default function MessageList() {
   });
 
   if (loading) {
-    return (
-      <div className="w-full h-full flex  items-center justify-center">Loading...</div>
-    );
+    return <Spinner message="Loading messages" />;
   }
 
   if (error) {
@@ -30,7 +29,7 @@ export default function MessageList() {
   return (
     <MessagesContainer>
       {messages.map((message) => (
-        <MessageBubble key={message.messageId} message={message} />
+        <Message key={message.messageId} message={message} />
       ))}
     </MessagesContainer>
   );

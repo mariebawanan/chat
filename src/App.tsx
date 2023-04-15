@@ -13,12 +13,13 @@ export default function App() {
   const [userId, setUserId] = useState<string>(User.Joyse);
   const [channelId, setChannelId] = useState<string>(Channel.General);
   const [messages, setMessages] = useState<Message[]>([]);
+  const [isOld, setIsOld] = useState(false);
 
   return (
     <ApolloProvider client={client}>
       <ChannelContext.Provider value={{ channelId, setChannelId }}>
         <UserContext.Provider value={{ userId, setUserId }}>
-          <MessageContext.Provider value={{ messages, setMessages }}>
+          <MessageContext.Provider value={{ messages, setMessages, isOld, setIsOld }}>
             <Layout>
               <ChatBox />
             </Layout>

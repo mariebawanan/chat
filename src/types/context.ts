@@ -13,4 +13,6 @@ export interface ChannelContextType {
 export interface MessageContextType {
   messages: Message[];
   setMessages: (messages: Message[]) => void;
+  isOld: boolean;
+  setIsOld: (isOld: boolean) => void;
 }
