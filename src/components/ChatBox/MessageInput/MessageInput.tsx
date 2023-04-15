@@ -1,52 +1,41 @@
-import Input from "@/components/Input/Input";
-import { ChannelContext, MessageContext, UserContext } from "@/context";
-import { POST_MESSAGE } from "@/graphql";
-import { Message } from "@/types";
-import { useMutation } from "@apollo/client";
-import { useContext, useState } from "react";
+import { ChannelContext, UserContext } from "@/context";
+import useMessageSender from "@/hooks/useMessageSender";
+import { useContext, useEffect, useRef } from "react";
 
 export default function MessageInput() {
-  const { channelId } = useContext(ChannelContext);
-  const { messages, setMessages } = useContext(MessageContext);
   const { userId } = useContext(UserContext);
-  const [text, setText] = useState("");
+  const { channelId } = useContext(ChannelContext);
+  const [loading, sendMessage] = useMessageSender();
+  const ref = useRef<HTMLInputElement>(null);
 
-  const [postMessage, { loading, error }] = useMutation(POST_MESSAGE, {
-    onCompleted: (data) => {
-      console.log(data);
-      const { postMessage } = data;
-      setMessages([postMessage, ...messages]);
-    },
-    onError: (_) => {
-      const unsentMessage: Message = {
-        messageId: `unsent-${new Date().toISOString()}-${userId}`,
-        text,
-        userId,
-        datetime: new Date(),
-        failed: true,
-      };
-      setMessages([unsentMessage, ...messages]);
-    },
-  });
+  useEffect(() => {
+    if (ref.current) {
+      const messaege = localStorage.getItem(`${channelId}-${userId}`);
+      ref.current.value = messaege || "";
+    }
+
+    return () => {
+      if (ref.current && ref.current.value) {
+        localStorage.setItem(`${channelId}-${userId}`, ref.current.value);
+      }
+    };
+  }, [channelId, userId]);
 
   if (loading) {
     return <div>loading...</div>;
   }
 
-  const handleSendMessage = () => {
-    postMessage({
-      variables: {
-        userId,
-        text,
-        channelId,
-      },
-    });
-  };
-
   return (
     <div className="flex flex-col">
-      <Input value={text} onChange={setText} placeholder="Type your message" />
-      <button onClick={handleSendMessage}>send message as {userId}</button>
+      <input ref={ref} placeholder="Type your message" />
+      <button
+        onClick={() => {
+          if (!ref.current) return;
+          sendMessage(ref.current.value);
+        }}
+      >
+        send message as {userId}
+      </button>
     </div>
   );
 }
