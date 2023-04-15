@@ -1,15 +1,12 @@
-import { ChannelContext, MessageContext, UserContext } from "@/context";
+import { ChannelContext, MessageContext } from "@/context";
 import { FETCH_LATEST_MESSAGES } from "@/graphql";
-import { Message } from "@/types";
 import { useQuery } from "@apollo/client";
-import classNames from "classnames";
-import format from "date-fns/format";
 import { useContext } from "react";
+import MessageBubble from "./MessageBubble";
 import MessagesContainer from "./MessagesContainer";
 
 export default function MessageList() {
   const { channelId } = useContext(ChannelContext);
-  const { userId } = useContext(UserContext);
   const { messages, setMessages } = useContext(MessageContext);
 
   const { loading, error } = useQuery(FETCH_LATEST_MESSAGES, {
@@ -29,22 +26,10 @@ export default function MessageList() {
   }
 
   return (
-    <div className="p-4 flex-1">
+    <div className="p-4 flex-1 mt-2 h-full pb-24">
       <MessagesContainer>
-        {messages.map((message: Message) => (
-          <div
-            key={message.messageId}
-            className={classNames("w-full flex flex-col items-start space-x-2", {
-              "items-end": message.userId === userId,
-              " border-2 border-red-900": message.failed,
-            })}
-          >
-            <div>{format(new Date(message.datetime), "MMM dd yyyy hh:mm a")}</div>
-            <div>
-              {message.text} - {message.messageId}
-            </div>
-            <div>{message.userId}</div>
-          </div>
+        {messages.map((message) => (
+          <MessageBubble key={message.messageId} message={message} />
         ))}
       </MessagesContainer>
     </div>

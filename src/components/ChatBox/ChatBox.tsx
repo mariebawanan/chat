@@ -3,10 +3,10 @@ import MessageInput from "./MessageInput/MessageInput";
 
 export default function ChatBox() {
   return (
-    <div className="flex flex-1 bg-slate-100 justify-center my-20 p-4">
-      <div className="w-3/4 h-full flex">
+    <div className="flex flex-1  justify-center p-4">
+      <div className="w-3/4 flex h-3/4 ">
         <Sidebar />
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 relative">
           <MessageList />
           <MessageInput />
         </div>

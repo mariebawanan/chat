@@ -6,7 +6,7 @@ interface Props {
 
 export default function Layout({ children }: Props) {
   return (
-    <div className="flex flex-col text-base bg-gray-100 w-full h-screen">
+    <div className="flex flex-col text-base w-full h-screen overflow-hidden">
       <Header />
       {children}
     </div>

@@ -31,7 +31,7 @@ export default function useMessageSender(): [boolean, (message: string) => void]
     setText(message);
     postMessage({
       variables: {
-        text,
+        text: message,
         channelId,
         userId,
       },
