@@ -1,4 +1,7 @@
 export * from "./ChatBox";
-export { default as Dropdown } from "./Dropdown/Dropdown";
+export * from "./Dropdown";
 export * from "./Layout";
-export { default as Loader } from "./Loader/Loader";
+export * from "./Loader";
+export * from "./MessageInput";
+export * from "./MessageList";
+export * from "./Sidebar";

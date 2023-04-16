@@ -32,7 +32,6 @@ export default function MessageItem({ message }: Props) {
             datetime={message.datetime}
           />
         </div>
-
         <MessageOwner userId={message.userId} isSelf={isSelf} />
       </div>
     </div>

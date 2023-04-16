@@ -17,9 +17,11 @@ export default function useMessageFetcher(): {
     onCompleted: (data) => {
       const { fetchMoreMessages } = data;
 
+      // Append or prepend the fetched messages based if fetching old or new messages
       if (isOld) {
         setMessages([...messages, ...fetchMoreMessages]);
       } else {
+        // Reverse the array to get the messages in the correct order for new messages
         const sorted = [...fetchMoreMessages].reverse();
         setMessages([...sorted, ...messages]);
       }
@@ -30,6 +32,7 @@ export default function useMessageFetcher(): {
     setIsOldInternal(old);
     setIsOld(old);
 
+    // Get the last message ID on the list depending if user is fetching old or new messages
     const messageId = old
       ? messages[messages.length - 1].messageId
       : messages[0].messageId;

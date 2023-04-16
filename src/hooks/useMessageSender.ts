@@ -12,10 +12,12 @@ export default function useMessageSender(): [boolean, (message: string) => void]
 
   const [postMessage, { loading }] = useMutation(POST_MESSAGE, {
     onCompleted: (data) => {
+      // Append the new message to the list
       const { postMessage } = data;
       setMessages([postMessage, ...messages]);
     },
     onError: (_) => {
+      // Create a placeholder for the unsent message
       const unsentMessage: Message = {
         messageId: `unsent-${new Date().toISOString()}-${userId}`,
         text,

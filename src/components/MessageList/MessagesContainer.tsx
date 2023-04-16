@@ -11,7 +11,6 @@ interface Props {
 
 export default function MessagesContainer({ children }: Props) {
   const { loading, fetchMessages } = useMessageFetcher();
-
   const { messages, isOld } = useContext(MessageContext);
   const { channelId } = useContext(ChannelContext);
   const listRef = useRef<HTMLDivElement>(null);
@@ -19,6 +18,8 @@ export default function MessagesContainer({ children }: Props) {
   useEffect(() => {
     if (!listRef || !listRef.current) return;
 
+    // Scroll to bottom if new message is sent or fetching new messages
+    // Scroll to top if old message
     listRef.current.scrollTo({
       top: isOld ? 0 : listRef.current.scrollHeight,
       behavior: "smooth",

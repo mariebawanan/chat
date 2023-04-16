@@ -8,11 +8,15 @@ export default function useDrafter(): [string, (value: string) => void] {
   const key = `${channelId}-${userId}`;
 
   useEffect(() => {
+    // Get the existing drafts from local storage
+    // Format is channelId-userId
     const value = localStorage.getItem(key);
     setInternalState(value || "");
   }, [key]);
 
   const setState = (value: string) => {
+    // If value was cleared or empty or just sent,
+    // remove the draft from local storage
     if (!value) {
       localStorage.removeItem(key);
       setInternalState("");

@@ -2,6 +2,7 @@ interface Props {
   title: string;
   children: React.ReactNode;
 }
+
 export default function SectionLayout({ title, children }: Props) {
   return (
     <div className="shadow bg-white rounded-lg py-6 px-4 flex flex-col space-y-4">
