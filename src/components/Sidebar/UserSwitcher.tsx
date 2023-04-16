@@ -3,7 +3,7 @@ import { UserContext } from "@/context/userContext";
 import { Option, User } from "@/types";
 import { useContext } from "react";
 
-const userList: Option[] = [
+export const userList: Option[] = [
   {
     label: User.Joyse,
     value: User.Joyse,
@@ -27,7 +27,12 @@ export default function UserSwitcher() {
 
   return (
     <SectionLayout title="Your User">
-      <Dropdown options={userList} value={userId} onChange={handleUserChange} />
+      <Dropdown
+        title="user-switcher"
+        options={userList}
+        value={userId}
+        onChange={handleUserChange}
+      />
     </SectionLayout>
   );
 }
