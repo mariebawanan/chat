@@ -1,10 +1,9 @@
-import Spinner from "@/components/Spinner/Spinner";
+import { EmptyList, Error, Message, MessagesContainer } from "@/components";
+import Loader from "@/components/Loader/Loader";
 import { ChannelContext, MessageContext } from "@/context";
 import { FETCH_LATEST_MESSAGES } from "@/graphql";
 import { useQuery } from "@apollo/client";
 import { useContext } from "react";
-import Message from "./Message";
-import MessagesContainer from "./MessagesContainer";
 
 export default function MessageList() {
   const { channelId } = useContext(ChannelContext);
@@ -12,6 +11,7 @@ export default function MessageList() {
 
   const { loading, error } = useQuery(FETCH_LATEST_MESSAGES, {
     variables: { channelId },
+    fetchPolicy: "network-only",
     onCompleted: (data) => {
       const { fetchLatestMessages } = data;
       setMessages(fetchLatestMessages);
@@ -19,11 +19,15 @@ export default function MessageList() {
   });
 
   if (loading) {
-    return <Spinner message="Loading messages" />;
+    return <Loader />;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <Error message={error.message} />;
+  }
+
+  if (!messages.length) {
+    return <EmptyList channelId={channelId} />;
   }
 
   return (

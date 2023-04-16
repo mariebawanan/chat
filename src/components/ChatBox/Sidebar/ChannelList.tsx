@@ -1,5 +1,5 @@
-import { SectionLayout } from "@/components/Layout";
-import { ChannelContext } from "@/context/channelContext";
+import { SectionLayout } from "@/components";
+import { ChannelContext } from "@/context";
 import { Channel, Option } from "@/types";
 import classNames from "classnames";
 import { useContext } from "react";

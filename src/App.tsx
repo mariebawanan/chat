@@ -5,7 +5,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { useState } from "react";
 
 const client = new ApolloClient({
-  uri: `${import.meta.env.VITE_BASE_URI}/graphql`,
+  uri: "https://angular-test-backend-yc4c5cvnnq-an.a.run.app/graphql",
   cache: new InMemoryCache(),
 });
 

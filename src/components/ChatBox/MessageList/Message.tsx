@@ -1,10 +1,8 @@
+import { MessageBubble, MessageOwner, MessageStatus } from "@/components";
 import { UserContext } from "@/context";
 import { Message } from "@/types";
 import classNames from "classnames";
 import { useContext } from "react";
-import MessageBubble from "./MessageBubble";
-import MessageOwner from "./MessageOwner";
-import MessageStatus from "./MessageStatus";
 
 interface Props {
   message: Message;

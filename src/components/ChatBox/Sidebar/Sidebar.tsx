@@ -1,5 +1,4 @@
-import ChannelList from "./ChannelList";
-import UserSwitcher from "./UserSwitcher";
+import { ChannelList, UserSwitcher } from "@/components";
 
 export default function Sidebar() {
   return (
