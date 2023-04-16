@@ -31,6 +31,7 @@ export default function MessageInput() {
     <div className="flex flex-col absolute bottom-6 left-0 w-full items-center">
       <div className="flex w-full mx-4 h-full">
         <textarea
+          data-testid="message-input"
           value={draft}
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Type your message..."
@@ -40,6 +41,7 @@ export default function MessageInput() {
         <SendButton loading={loading} onClick={() => handleSend(draft)} />
       </div>
       <div
+        data-testid="error-message"
         className={classNames(
           "text-sm text-left w-full px-4 visible text-red-400 absolute -bottom-5 left-1",
           {

@@ -11,6 +11,7 @@ interface Props {
 export default function SendButton({ loading, onClick }: Props) {
   return (
     <button
+      data-testid="send-button"
       disabled={loading}
       onClick={onClick}
       className={classNames(
@@ -21,6 +22,7 @@ export default function SendButton({ loading, onClick }: Props) {
       )}
     >
       <FontAwesomeIcon
+        data-testid="send-icon"
         className={classNames("text-slate-500", { "animate-spin": loading })}
         icon={loading ? faSpinner : faPaperPlane}
       />

@@ -28,14 +28,15 @@ export default function ChannelList() {
 
   return (
     <SectionLayout title="Channels">
-      <div className="flex flex-col space-y-4">
+      <div data-testid="channel-options" className="flex flex-col space-y-4">
         {channelList.map(({ value, label }) => (
           <div
             key={value}
             className={classNames(
               "p-4 rounded-md bg-white hover:cursor-pointer hover:drop-shadow-lg transition-all",
               {
-                "bg-gradient-to-r from-blue-100  to-blue-50": channelId === value,
+                "active bg-gradient-to-r from-blue-100 to-blue-50 active":
+                  channelId === value,
               }
             )}
             onClick={() => handleChannelChange(value)}

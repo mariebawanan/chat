@@ -11,6 +11,16 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: "./tests/setup.ts",
+    coverage: {
+      provider: "c8",
+      reportsDirectory: "./tests/coverage",
+      include: [
+        "src/components/**/*.tsx",
+        "src/hooks/*.ts",
+        "src/graphql/*.ts",
+        "src/context/*.ts",
+      ],
+    },
   },
   resolve: {
     alias: {

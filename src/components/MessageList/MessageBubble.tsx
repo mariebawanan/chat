@@ -9,7 +9,8 @@ interface Props {
 export default function MessageBubble({ isSelf, failed, text }: Props) {
   return (
     <div
-      className={classNames("p-2 border  rounded-md shadow relative min-h-[38px]", {
+      data-testid={failed ? "message-failed" : "message-sucess"}
+      className={classNames("p-2 border rounded-md shadow relative min-h-[38px]", {
         "border-red-900 bg-red-100": failed,
         "border-slate-300": !failed,
       })}

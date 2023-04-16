@@ -62,3 +62,15 @@ A simple chat application that allows users to send messages to each other withi
    ```
     http://127.0.0.1:5173
    ```
+
+---
+
+### Testing
+
+- Run the following command to run the tests
+
+  ```
+   yarn test
+  ```
+
+- Coverage report can be found under `test/coverage`

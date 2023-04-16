@@ -15,14 +15,14 @@ describe("<UserSwitcher />", () => {
   });
 
   it("renders first user as default", async () => {
-    const switcher = render(<UserSwitcher />);
-    const select = await switcher.findByTestId("user-switcher");
+    const { findByTestId } = render(<UserSwitcher />);
+    const select = await findByTestId("user-switcher");
     expect(select).toHaveValue(userList[0].label);
   });
 
   it("changes user on change", async () => {
-    const switcher = render(<UserSwitcher />);
-    const select = await switcher.findByTestId("user-switcher");
+    const { findByTestId } = render(<UserSwitcher />);
+    const select = await findByTestId("user-switcher");
 
     // Select next user
     const nextUser = screen.getByText(userList[1].label);

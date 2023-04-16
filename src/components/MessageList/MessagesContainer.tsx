@@ -20,15 +20,13 @@ export default function MessagesContainer({ children }: Props) {
 
     // Scroll to bottom if new message is sent or fetching new messages
     // Scroll to top if old message
-    listRef.current.scrollTo({
-      top: isOld ? 0 : listRef.current.scrollHeight,
-      behavior: "smooth",
-    });
+    listRef.current.scrollTop = isOld ? 0 : listRef.current.scrollHeight;
   }, [listRef, messages, isOld]);
 
   return (
     <div
       ref={listRef}
+      data-testid="messages-container"
       className="h-full overflow-y-auto scrollbar-thumb scrollbar-thumb-transparent group-hover/chatbox:scrollbar-thumb-gray-200 scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-transparent"
     >
       <div className="h-16 z-1 absolute top-0 flex items-center py-6 px-4 text-2xl font-serif bg-slate-100 w-ful font-bold text-slate-600 pb-2 border-b border-slate-200 w-full">

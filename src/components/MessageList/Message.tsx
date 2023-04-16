@@ -17,8 +17,9 @@ export default function MessageItem({ message }: Props) {
   }
 
   return (
-    <div className="flex flex-col space-y-2 my-4">
+    <div data-testid="message" className="flex flex-col space-y-2 my-4">
       <div
+        data-testid={isSelf ? "own-message" : "other-message"}
         className={classNames("w-fit flex max-w-[70%] min-w-[130px]", {
           "self-end flex": isSelf,
           "flex-row-reverse": !isSelf,

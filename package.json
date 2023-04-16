@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "test": "vitest --coverage",
+    "test": "vitest --coverage --watch=false",
+    "test:watch": "vitest --coverage",
     "preview": "vite preview"
   },
   "dependencies": {
